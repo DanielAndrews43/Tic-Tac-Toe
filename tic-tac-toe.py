@@ -66,9 +66,9 @@ def checkIfWin(turn,moves):
     '''
     player = ''
     if moves != turn%2:
-        player == 'X'
+        player = 'X'
     else:
-        player == 'O'
+        player = 'O'
         
     print('Checking for a win...')
 
@@ -123,7 +123,7 @@ def main():
             else:
                 moves.update({newMove:'O'})
             remainingSquares.remove(newMove)
-            if checkIfWin(turn,moves):
+            if checkIfWin(turn,moves) == True:
                 gameOver = True
                 winner(player) 
                 continue
