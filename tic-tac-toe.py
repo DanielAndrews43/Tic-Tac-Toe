@@ -46,7 +46,7 @@ def intro(keyword):
         
 def board(moves):
     '''
-    returns game board
+    returns game board using moves dict
     '''
     print (' ' + str(moves.get('tl')) + ' | ' + str(moves.get('tm')) + ' | ' + str(moves.get('tr')))
     print '--- --- ---'
@@ -58,7 +58,7 @@ def board(moves):
    
     
 def winner(who):
-    print 'Winner is: ' + str(who)
+    print ('Winner is: ' + str(who)) * 5
  
 def checkIfWin(turn,moves):
     '''
@@ -114,7 +114,7 @@ def main():
             player = 'player one'
         else:
             player = 'player two'
-        print 'It is %s\'s turn' % (player)
+        print 'It is %s\'s turn. Please pick where you would like to go' % (player)
         newMove = raw_input('Please enter your next move: ')
         if newMove in remainingSquares:
             turn += 1
@@ -122,25 +122,25 @@ def main():
                 moves.update({newMove:'X'})
             else:
                 moves.update({newMove:'O'})
-            remainingSquares.remove(newMove)
-            if checkIfWin(turn,moves) == True:
+            remainingSquares.remove(newMove) #Old move can't be chosen anymore
+            if checkIfWin(turn,moves):
                 gameOver = True
                 winner(player) 
-                continue
+                continue #Restarts the game
             else:
                 print 'Next Turn!'
         else:
             print str(newMove) + ' is not a valid move! Please enter a vaild move!'
             print remainingSquares
-        if turn == 10:
+        if turn == 10: #10 turns means all squares are filled with no winner
             print 'Cat\'s Game! Game Over!'
             gameOver = True
-            continue
+            continue #Restarts the game
     print
     print
     print
     print 'Starting new game...'
-    return main()
+    return main() #Recursion? :P
                 
                 
             
